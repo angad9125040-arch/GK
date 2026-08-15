@@ -16,7 +16,7 @@ jobs:
 
       - name: Download Data from Google Sheets
         run: |
-          curl -L -o game_data.csv "आपकी_गूगल_शीट_का_CSV_लिंक_यहाँ_डालें"
+          curl -L -o game_data.csv "https://docs.google.com/spreadsheets/d/1mlusv9GH57nSaaPasEtagDkh_BbvA6Ma7HybhKpYVnM/export?format=csv"
 
       - name: Save to GitHub
         run: |
