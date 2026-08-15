@@ -1,0 +1,27 @@
+name: Update Game Data
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write 
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Download Data from Google Sheets
+        run: |
+          curl -L -o game_data.csv "आपकी_गूगल_शीट_का_CSV_लिंक_यहाँ_डालें"
+
+      - name: Save to GitHub
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add game_data.csv
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Updated data from Google Sheet" && git push)
+          
